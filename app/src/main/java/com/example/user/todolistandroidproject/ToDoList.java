@@ -10,7 +10,7 @@ import static android.R.id.list;
 
 public class ToDoList {
 
-    private ArrayList<Task>();
+    private ArrayList<Task> list;
 
     public ToDoList() {
         list = new ArrayList<Task>();
