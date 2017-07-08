@@ -2,6 +2,8 @@ package com.example.user.todolistandroidproject;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -21,5 +23,10 @@ public class ToDoListActivity extends AppCompatActivity {
 
         ListView listView = (ListView) findViewById(R.id.list);
         listView.setAdapter(toDoAdapter);
+    }
+
+    public void getTask(View listItem) {
+        Task task = (Task) listItem.getTag();
+        Log.d("Task Title: ", task.getTitle());
     }
 }
