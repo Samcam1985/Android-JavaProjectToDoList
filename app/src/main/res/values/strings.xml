@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">ToDoListAndroidProject</string>
+    <string name="add">Add New Task</string>
 </resources>
