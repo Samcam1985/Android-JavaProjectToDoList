@@ -20,4 +20,10 @@ public class TaskTest {
     public void getTitleTest() {
         assertEquals("Collect Shopping", task.getTitle());
     }
+
+    @Test
+    public void getDescriptionTest() {
+        assertEquals("Collect click and collect from tesco Corstorphine on 14/7 between 9am and 11am",
+        task.getDescription());
+    }
 }
