@@ -14,4 +14,16 @@ public class ToDoListTest {
         ToDoList toDoList = new ToDoList();
         assertEquals(12, toDoList.getList().size());
     }
+
+    @Test
+    public void addTest() {
+       ToDoList toDoList = new ToDoList();
+        Task task = new Task ("Book Flights", "Go on holiday");
+        toDoList.add(task);
+        assertEquals(13, toDoList.getList().size());
+
+    }
+
+
+
 }

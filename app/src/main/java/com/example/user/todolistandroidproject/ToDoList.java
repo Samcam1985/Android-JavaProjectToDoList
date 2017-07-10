@@ -24,11 +24,20 @@ public class ToDoList {
         list.add(new Task("Make dinner reservations", "Book dinner for Wednesday night for 8"));
         list.add(new Task("Go to travel agent",
                 "Enquire about US holidays for September and iceland holidays for Christmas"
-                ));
+        ));
         list.add(new Task("Phone Vet", "Book appointment for Vigo to get his ears checked"));
         list.add(new Task("Car Service", "Book cars in for service at Evans Halshaw"));
         list.add(new Task("Airport Dropoff", "Drop Rich off at airport on Monday morning by 7am"));
     }
 
-    public ArrayList<Task> getList() { return new ArrayList<Task>(list);}
+    public ArrayList<Task> getList() {
+        return new ArrayList<Task>(list);
+    }
+
+    public void add (Task task){
+        list.add(task);
+
+
+    }
+
 }
