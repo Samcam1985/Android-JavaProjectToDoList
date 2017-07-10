@@ -1,5 +1,7 @@
 package com.example.user.todolistandroidproject;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 
 import static android.R.id.list;
@@ -10,10 +12,10 @@ import static android.R.id.list;
 
 public class ToDoList {
 
-    private ArrayList<Task> list;
+    private static ArrayList<Task> list = new ArrayList<>();
 
     public ToDoList() {
-        list = new ArrayList<Task>();
+        list = new ArrayList<>();
         list.add(new Task("Go to John Lewis", "Buy wedding gift for Neil and Elizabeth"));
         list.add(new Task("Update Cv", "CV needs to be updated by Week 9 of course for CV review"));
         list.add(new Task("Android Project", "Complete project by 13/7/17"));
@@ -30,14 +32,22 @@ public class ToDoList {
         list.add(new Task("Airport Dropoff", "Drop Rich off at airport on Monday morning by 7am"));
     }
 
-    public ArrayList<Task> getList() {
+    public static ArrayList<Task> getList() {
         return new ArrayList<Task>(list);
     }
 
-    public void add (Task task){
+    public static void removeTask(Task task) {
+        for(int i = 0; i < list.size(); i++) {
+
+            if(task.getTitle().equals(list.get(i).getTitle())) {
+                list.remove(i);
+                return;
+            }
+        }
+    }
+
+    public static void add (Task task){
         list.add(task);
-
-
     }
 
 }

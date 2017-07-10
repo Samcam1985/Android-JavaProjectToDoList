@@ -29,6 +29,9 @@ public class ToDoListAdapter extends ArrayAdapter<Task> {
         TextView title = (TextView) listItemView.findViewById(R.id.title);
         title.setText(liveTask.getTitle());
 
+        //TextView completed = (TextView) listItemView.findViewById(R.id.completed);
+        //completed.setText(liveTask.getCompleted());
+
         listItemView.setTag(liveTask);
 
         return listItemView;

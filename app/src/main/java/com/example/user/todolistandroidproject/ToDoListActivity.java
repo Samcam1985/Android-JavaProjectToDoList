@@ -6,7 +6,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -18,7 +21,13 @@ public class ToDoListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_to_do_list);
 
         ToDoList toDoList = new ToDoList();
-        ArrayList<Task> list = toDoList.getList();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        ArrayList<Task> list = ToDoList.getList();
 
         ToDoListAdapter toDoAdapter = new ToDoListAdapter(this, list);
 
@@ -26,6 +35,7 @@ public class ToDoListActivity extends AppCompatActivity {
         ListView listView = (ListView) findViewById(R.id.list);
         listView.setAdapter(toDoAdapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Task task = (Task) adapterView.getItemAtPosition(i);
@@ -37,10 +47,9 @@ public class ToDoListActivity extends AppCompatActivity {
         });
     }
 
-    public void getTask(View listItem) {
-        Task task = (Task) listItem.getTag();
-        Log.d("Task Title: ", task.getTitle());
-
-
+    public void addNewTaskButtonClicked(View view) {
+        Intent intent = new Intent(this, AddTaskActivity.class);
+        startActivity(intent);
     }
+
 }
