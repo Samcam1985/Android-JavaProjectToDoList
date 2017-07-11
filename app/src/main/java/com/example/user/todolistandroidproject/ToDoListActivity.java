@@ -71,11 +71,25 @@ public class ToDoListActivity extends AppCompatActivity {
     }
 
     public void onCheckboxClicked(View view) {
-        Log.d("AHH", "CLICKED");
-        //Delete from list,
-        //
-        // Is the view now checked?
-      //  boolean checked = ((CheckBox) view).isChecked();
+//        Intent intent = new Intent(this, CompletedTaskListActivity.class);
+
+    }
+
+    public void addNewTaskButtonClicked(View view) {
+        Intent intent = new Intent(this, AddTaskActivity.class);
+
+        startActivity(intent);
+    }
+
+
+
+}
+
+
+//Delete from list,
+//
+// Is the view now checked?
+//  boolean checked = ((CheckBox) view).isChecked();
 
 
 //        // Check which checkbox was clicked
@@ -89,14 +103,3 @@ public class ToDoListActivity extends AppCompatActivity {
 //
 //
 //        }
-    }
-
-    public void addNewTaskButtonClicked(View view) {
-        Intent intent = new Intent(this, AddTaskActivity.class);
-
-        startActivity(intent);
-    }
-
-
-
-}

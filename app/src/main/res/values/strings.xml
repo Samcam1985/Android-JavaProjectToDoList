@@ -5,9 +5,6 @@
     <string name="complete">Mark as Complete</string>
     <string name="add_task">Add task to List</string>
 
-    <string-array name="status_arrays">
-        <item>Complete</item>
-        <item>Incomplete</item>
-    </string-array>
+
 
 </resources>
