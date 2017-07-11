@@ -17,24 +17,18 @@ public class CompletedTaskListActivity extends AppCompatActivity {
     private ArrayList<Task> completedList = new ArrayList<Task>();
     private Gson gson;
     private SharedPreferences sharedPref;
-    private ToDoListAdapter completedListAdapter;
+    private CompletedListAdapter completedListAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_completed_task_list);
         sharedPref = getSharedPreferences("ToDoListApp", Context.MODE_PRIVATE);
-
-        //String completedListString = sharedPref.getString("CompletedList", new ArrayList<Task>().toString());
         gson = new Gson();
 
-        TypeToken<ArrayList<Task>> toDoTaskArrayList = new TypeToken<ArrayList<Task>>(){};
-        //completedList = gson.fromJson(completedListString, toDoTaskArrayList.getType());
-
-        //if(completedList.size() == 0)
-        //{
-            String todoListString = sharedPref.getString("ToDoList", new ArrayList<Task>().toString());
-            list = gson.fromJson(todoListString, toDoTaskArrayList.getType());
+        TypeToken<ArrayList<Task>> completedTaskArrayList = new TypeToken<ArrayList<Task>>(){};
+        String completedListString = sharedPref.getString("CompletedList", new ArrayList<Task>().toString());
+        list = gson.fromJson(completedListString, completedTaskArrayList.getType());
 
             for(Task task : list)
             {
@@ -46,14 +40,8 @@ public class CompletedTaskListActivity extends AppCompatActivity {
                     }
                 }
             }
-        //}
 
-        //SharedPreferences.Editor editor = sharedPref.edit();
-
-        //editor.putString("CompletedList", gson.toJson(completedList));
-        //editor.apply();
-
-        completedListAdapter = new ToDoListAdapter(this, completedList);
+        completedListAdapter = new CompletedListAdapter(this, completedList);
 
         ListView listView = (ListView) findViewById(R.id.list);
         listView.setAdapter(completedListAdapter);

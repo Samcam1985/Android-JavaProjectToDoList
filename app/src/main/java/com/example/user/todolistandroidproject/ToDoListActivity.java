@@ -22,7 +22,10 @@ import java.util.ArrayList;
 
 public class ToDoListActivity extends AppCompatActivity {
 
-    private ArrayList<Task> list;
+    private ArrayList<Task> persistedToDolist;
+    private ArrayList<Task> persistedCompletedlist;
+    private ArrayList<Task> toDoList = new ArrayList<Task>();
+    private ArrayList<Task> completedList = new ArrayList<Task>();
     private Gson gson;
     private SharedPreferences sharedPref;
     private ToDoListAdapter toDoListAdapter;
@@ -34,10 +37,28 @@ public class ToDoListActivity extends AppCompatActivity {
         sharedPref = getSharedPreferences("ToDoListApp", Context.MODE_PRIVATE);
 
         String toDoListString = sharedPref.getString("ToDoList", new ArrayList<Task>().toString());
+        String completedListString = sharedPref.getString("CompletedList", new ArrayList<Task>().toString());
         gson = new Gson();
 
         TypeToken<ArrayList<Task>> toDoTaskArrayList = new TypeToken<ArrayList<Task>>(){};
-        list = gson.fromJson(toDoListString, toDoTaskArrayList.getType());
+        persistedToDolist = gson.fromJson(toDoListString, toDoTaskArrayList.getType());
+
+        TypeToken<ArrayList<Task>> completedTaskArrayList = new TypeToken<ArrayList<Task>>(){};
+        persistedCompletedlist = gson.fromJson(completedListString, completedTaskArrayList.getType());
+
+        for(Task task : persistedToDolist)
+        {
+            if(task.getIsComplete() == null || task.getIsComplete() == false)
+            {
+                toDoList.add(task);
+            }
+            else
+            {
+                persistedCompletedlist.add(task);
+            }
+        }
+
+        toDoListAdapter = new ToDoListAdapter(this, toDoList);
 
 //        ToDoList toDoList = new ToDoList();
 //        ArrayList<Task> list = toDoList.getList();
@@ -45,15 +66,14 @@ public class ToDoListActivity extends AppCompatActivity {
         Task task = (Task) getIntent().getSerializableExtra("task");
         if(task != null)
         {
-            list.add(task);
+            toDoList.add(task);
         }
 
         SharedPreferences.Editor editor = sharedPref.edit();
 
-        editor.putString("ToDoList", gson.toJson(list));
+        editor.putString("ToDoList", gson.toJson(toDoList));
+        editor.putString("CompletedList", gson.toJson(persistedCompletedlist));
         editor.apply();
-
-        toDoListAdapter = new ToDoListAdapter(this, list);
 
         ListView listView = (ListView) findViewById(R.id.list);
         listView.setAdapter(toDoListAdapter);
@@ -81,11 +101,18 @@ public class ToDoListActivity extends AppCompatActivity {
         boolean checked = chk_IsComplete.isChecked();
         int id = chk_IsComplete.getId();
 
-        Task task = (Task)list.get(id);
+        Task task = (Task)toDoList.get(id);
         task.setIsComplete(checked);
+        toDoList.remove(id);
+        persistedCompletedlist.add(task);
+
         SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putString("ToDoList", gson.toJson(list));
+        editor.putString("ToDoList", gson.toJson(toDoList));
+        editor.putString("CompletedList", gson.toJson(persistedCompletedlist));
         editor.apply();
+
+        Intent intent = new Intent(ToDoListActivity.this, ToDoListActivity.class);
+        startActivity(intent);
     }
 
     public void addNewTaskButtonClicked(View view) {

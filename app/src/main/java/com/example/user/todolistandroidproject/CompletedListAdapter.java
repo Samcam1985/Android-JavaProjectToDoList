@@ -43,9 +43,6 @@ public class CompletedListAdapter extends ArrayAdapter<Task> {
             }
         }
 
-        //TextView completed = (TextView) listItemView.findViewById(R.id.completed);
-        //completed.setText(liveTask.getCompleted());
-
         return listItemView;
 
     }
