@@ -12,7 +12,7 @@ import static android.R.id.list;
 
 public class ToDoList {
 
-    private static ArrayList<Task> list = new ArrayList<>();
+    private ArrayList<Task> list = new ArrayList<>();
 
     public ToDoList() {
         list = new ArrayList<>();
@@ -32,11 +32,11 @@ public class ToDoList {
         list.add(new Task("Airport Dropoff", "Drop Rich off at airport on Monday morning by 7am"));
     }
 
-    public static ArrayList<Task> getList() {
+    public  ArrayList<Task> getList() {
         return new ArrayList<Task>(list);
     }
 
-    public static void removeTask(Task task) {
+    public void removeTask(Task task) {
         for(int i = 0; i < list.size(); i++) {
 
             if(task.getTitle().equals(list.get(i).getTitle())) {
@@ -46,7 +46,7 @@ public class ToDoList {
         }
     }
 
-    public static void add (Task task){
+    public void add (Task task){
         list.add(task);
     }
 

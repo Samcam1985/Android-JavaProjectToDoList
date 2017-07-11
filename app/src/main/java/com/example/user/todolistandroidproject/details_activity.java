@@ -28,10 +28,10 @@ public class details_activity extends AppCompatActivity {
         description.setText(task.getDescription());
     }
 
-    public void markAsComplete(View view) {
-        ToDoList.removeTask(task);
-        finish();
-    }
+//    public void markAsComplete(View view) {
+//        ToDoList.removeTask(task);
+//        finish();
+//    }
 
     public void getTask(View listItem) {
         Task task = (Task) listItem.getTag();

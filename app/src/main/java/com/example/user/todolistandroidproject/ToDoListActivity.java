@@ -1,6 +1,8 @@
 package com.example.user.todolistandroidproject;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,6 +13,9 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
 import java.util.ArrayList;
 
 public class ToDoListActivity extends AppCompatActivity {
@@ -19,18 +24,29 @@ public class ToDoListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_to_do_list);
+        SharedPreferences sharedPref = getSharedPreferences("ToDoListApp", Context.MODE_PRIVATE);
 
-        ToDoList toDoList = new ToDoList();
-    }
+        String toDoListString = sharedPref.getString("ToDoList", new ArrayList<Task>().toString());
+        Gson gson = new Gson();
 
-    @Override
-    protected void onResume() {
-        super.onResume();
+        TypeToken<ArrayList<Task>> toDoTaskArrayList = new TypeToken<ArrayList<Task>>(){};
+        ArrayList<Task> list = gson.fromJson(toDoListString, toDoTaskArrayList.getType());
 
-        ArrayList<Task> list = ToDoList.getList();
+//        ToDoList toDoList = new ToDoList();
+//        ArrayList<Task> list = toDoList.getList();
+
+        Task task = (Task) getIntent().getSerializableExtra("task");
+        if(task != null)
+        {
+            list.add(task);
+        }
+
+        SharedPreferences.Editor editor = sharedPref.edit();
+
+        editor.putString("ToDoList", gson.toJson(list));
+        editor.apply();
 
         ToDoListAdapter toDoAdapter = new ToDoListAdapter(this, list);
-
 
         ListView listView = (ListView) findViewById(R.id.list);
         listView.setAdapter(toDoAdapter);
@@ -41,7 +57,6 @@ public class ToDoListActivity extends AppCompatActivity {
                 Task task = (Task) adapterView.getItemAtPosition(i);
                 Intent intent = new Intent(ToDoListActivity.this, details_activity.class);
                 intent.putExtra("task", task);
-
                 startActivity(intent);
             }
         });
@@ -49,7 +64,10 @@ public class ToDoListActivity extends AppCompatActivity {
 
     public void addNewTaskButtonClicked(View view) {
         Intent intent = new Intent(this, AddTaskActivity.class);
+
         startActivity(intent);
     }
+
+
 
 }
