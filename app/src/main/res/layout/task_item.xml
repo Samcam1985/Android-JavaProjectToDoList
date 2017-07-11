@@ -5,7 +5,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:onClick="onItemClicked"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+
+    >
 
 
     <TextView
@@ -13,7 +15,7 @@
         android:layout_width="207dp"
         android:layout_height="30dp"
         android:layout_marginBottom="8dp"
-        android:layout_marginRight="5dp"
+        android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
         android:text="TextView"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -34,7 +36,7 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:onClick="onCheckboxClicked"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.019"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="8dp"
         app:layout_constraintRight_toLeftOf="@+id/title"
