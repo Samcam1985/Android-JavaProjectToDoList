@@ -33,6 +33,7 @@ public class CompletedListAdapter extends ArrayAdapter<Task> {
         CheckBox chk_isComplete = (CheckBox) listItemView.findViewById(R.id.checkbox_complete);
         chk_isComplete.setId(position);
 
+
         if(liveTask.getIsComplete() != null)
         {
             if(liveTask.getIsComplete() == true)
@@ -44,8 +45,6 @@ public class CompletedListAdapter extends ArrayAdapter<Task> {
 
         //TextView completed = (TextView) listItemView.findViewById(R.id.completed);
         //completed.setText(liveTask.getCompleted());
-
-
 
         return listItemView;
 

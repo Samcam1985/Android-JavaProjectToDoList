@@ -45,6 +45,7 @@
         android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
         android:text="@string/completed_tasks"
+        android:onClick="viewCompletedTasks"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@+id/add"
         app:layout_constraintRight_toRightOf="parent"

@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class ToDoListActivity extends AppCompatActivity {
@@ -24,6 +25,7 @@ public class ToDoListActivity extends AppCompatActivity {
     private ArrayList<Task> list;
     private Gson gson;
     private SharedPreferences sharedPref;
+    private ToDoListAdapter toDoListAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,10 +53,10 @@ public class ToDoListActivity extends AppCompatActivity {
         editor.putString("ToDoList", gson.toJson(list));
         editor.apply();
 
-        ToDoListAdapter toDoAdapter = new ToDoListAdapter(this, list);
+        toDoListAdapter = new ToDoListAdapter(this, list);
 
         ListView listView = (ListView) findViewById(R.id.list);
-        listView.setAdapter(toDoAdapter);
+        listView.setAdapter(toDoListAdapter);
 //        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 //            @Override
 //            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -77,9 +79,9 @@ public class ToDoListActivity extends AppCompatActivity {
     public void onCheckboxClicked(View view) {
         CheckBox chk_IsComplete = (CheckBox)view;
         boolean checked = chk_IsComplete.isChecked();
-        int position = chk_IsComplete.getId();
+        int id = chk_IsComplete.getId();
 
-        Task task = (Task)list.get(position);
+        Task task = (Task)list.get(id);
         task.setIsComplete(checked);
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putString("ToDoList", gson.toJson(list));
@@ -93,7 +95,33 @@ public class ToDoListActivity extends AppCompatActivity {
     }
 
     public void viewCompletedTasks(View view){
+        Intent intent = new Intent(this, CompletedTaskListActivity.class);
+        startActivity(intent);
 
+//        ArrayList<Task> copyList = list;
+//        //toDoListAdapter.clear();
+//        for(Task task : copyList)
+//        {
+//            if(task.getIsComplete() != null)
+//            {
+//                if(task.getIsComplete() == true)
+//                {
+//                    toDoListAdapter.add(task);
+//                    toDoListAdapter.notifyDataSetChanged();
+//                }
+//            }
+//        }
+
+        //toDoListAdapter = new ToDoListAdapter(this, completedList);
+
+        //toDoListAdapter.addAll(completedList);
+        //toDoListAdapter.notifyDataSetChanged();
+
+        //CompletedListAdapter completedListAdapter = new CompletedListAdapter(this, list);
+
+        //ListView listView = (ListView) findViewById(R.id.list);
+        //listView.setAdapter(completedListAdapter);
+        //completedListAdapter.notifyDataSetChanged();
 
     }
 
