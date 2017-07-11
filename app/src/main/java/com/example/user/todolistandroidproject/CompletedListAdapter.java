@@ -14,8 +14,8 @@ import java.util.ArrayList;
  * Created by user on 08/07/2017.
  */
 
-public class ToDoListAdapter extends ArrayAdapter<Task> {
-    public ToDoListAdapter(Context context, ArrayList<Task> list) {
+public class CompletedListAdapter extends ArrayAdapter<Task> {
+    public CompletedListAdapter(Context context, ArrayList<Task> list) {
         super(context, 0, list);
     }
 
@@ -38,13 +38,14 @@ public class ToDoListAdapter extends ArrayAdapter<Task> {
             if(liveTask.getIsComplete() == true)
             {
                 chk_isComplete.setChecked(true);
+                listItemView.setTag(liveTask);
             }
         }
 
         //TextView completed = (TextView) listItemView.findViewById(R.id.completed);
         //completed.setText(liveTask.getCompleted());
 
-        listItemView.setTag(liveTask);
+
 
         return listItemView;
 

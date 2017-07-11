@@ -22,15 +22,17 @@ import java.util.ArrayList;
 public class ToDoListActivity extends AppCompatActivity {
 
     private ArrayList<Task> list;
+    private Gson gson;
+    private SharedPreferences sharedPref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_to_do_list);
-        SharedPreferences sharedPref = getSharedPreferences("ToDoListApp", Context.MODE_PRIVATE);
+        sharedPref = getSharedPreferences("ToDoListApp", Context.MODE_PRIVATE);
 
         String toDoListString = sharedPref.getString("ToDoList", new ArrayList<Task>().toString());
-        Gson gson = new Gson();
+        gson = new Gson();
 
         TypeToken<ArrayList<Task>> toDoTaskArrayList = new TypeToken<ArrayList<Task>>(){};
         list = gson.fromJson(toDoListString, toDoTaskArrayList.getType());
@@ -73,15 +75,15 @@ public class ToDoListActivity extends AppCompatActivity {
     }
 
     public void onCheckboxClicked(View view) {
-//        Task task = (Task) view
-//        Intent intent = new Intent(this, CompletedTaskListActivity.class);
         CheckBox chk_IsComplete = (CheckBox)view;
         boolean checked = chk_IsComplete.isChecked();
         int position = chk_IsComplete.getId();
 
         Task task = (Task)list.get(position);
         task.setIsComplete(checked);
-
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString("ToDoList", gson.toJson(list));
+        editor.apply();
     }
 
     public void addNewTaskButtonClicked(View view) {
@@ -91,6 +93,7 @@ public class ToDoListActivity extends AppCompatActivity {
     }
 
     public void viewCompletedTasks(View view){
+
 
     }
 
