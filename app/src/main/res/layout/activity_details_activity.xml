@@ -8,36 +8,39 @@
 
     <TextView
         android:id="@+id/title"
-        android:layout_width="328dp"
-        android:layout_height="46dp"
+        android:layout_width="348dp"
+        android:layout_height="120dp"
         android:layout_marginBottom="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
+        android:textAlignment="center"
+        android:autoText="false"
         android:text="TextView"
-
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.135"
-        tools:layout_editor_absoluteX="-94dp" />
+        app:layout_constraintVertical_bias="0.135" />
 
     <TextView
         android:id="@+id/description"
-        android:layout_width="328dp"
-        android:layout_height="46dp"
+        android:layout_width="348dp"
+        android:layout_height="144dp"
         android:layout_marginBottom="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
+        android:contextClickable="false"
         android:text="TextView"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.525"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title"
-        app:layout_constraintVertical_bias="0.165"
-        tools:layout_editor_absoluteX="28dp"
-        app:layout_constraintHorizontal_bias="0.512" />
+        app:layout_constraintVertical_bias="0.162" />
 
 </android.support.constraint.ConstraintLayout>

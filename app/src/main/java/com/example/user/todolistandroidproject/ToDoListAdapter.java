@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -28,6 +29,9 @@ public class ToDoListAdapter extends ArrayAdapter<Task> {
 
         TextView title = (TextView) listItemView.findViewById(R.id.title);
         title.setText(liveTask.getTitle());
+
+        CheckBox chk_isComplete = (CheckBox) listItemView.findViewById(R.id.checkbox_complete);
+        chk_isComplete.setId(position);
 
         //TextView completed = (TextView) listItemView.findViewById(R.id.completed);
         //completed.setText(liveTask.getCompleted());

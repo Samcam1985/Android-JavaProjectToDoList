@@ -10,7 +10,7 @@ public class Task implements Serializable {
 
     private String title;
     private String description;
-    public Boolean isComplete;
+    private Boolean isComplete;
 
 
 
@@ -22,8 +22,8 @@ public class Task implements Serializable {
 
     public String getTitle() {return title;}
     public String getDescription() {return description;}
-    public Boolean getComplete() {return isComplete;}
+    public Boolean getIsComplete() {return isComplete;}
 
-    public void setComplete(Boolean complete) {isComplete = complete;}
+    public void setIsComplete(Boolean complete) {isComplete = complete;}
 
     }

@@ -21,6 +21,8 @@ import java.util.ArrayList;
 
 public class ToDoListActivity extends AppCompatActivity {
 
+    private ArrayList<Task> list;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,7 +33,7 @@ public class ToDoListActivity extends AppCompatActivity {
         Gson gson = new Gson();
 
         TypeToken<ArrayList<Task>> toDoTaskArrayList = new TypeToken<ArrayList<Task>>(){};
-        ArrayList<Task> list = gson.fromJson(toDoListString, toDoTaskArrayList.getType());
+        list = gson.fromJson(toDoListString, toDoTaskArrayList.getType());
 
 //        ToDoList toDoList = new ToDoList();
 //        ArrayList<Task> list = toDoList.getList();
@@ -71,7 +73,14 @@ public class ToDoListActivity extends AppCompatActivity {
     }
 
     public void onCheckboxClicked(View view) {
+//        Task task = (Task) view
 //        Intent intent = new Intent(this, CompletedTaskListActivity.class);
+        CheckBox chk_IsComplete = (CheckBox)view;
+        boolean checked = chk_IsComplete.isChecked();
+        int position = chk_IsComplete.getId();
+
+        Task task = (Task)list.get(position);
+        task.setIsComplete(checked);
 
     }
 
@@ -81,7 +90,9 @@ public class ToDoListActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void viewCompletedTasks(View view){
 
+    }
 
 }
 
@@ -89,7 +100,7 @@ public class ToDoListActivity extends AppCompatActivity {
 //Delete from list,
 //
 // Is the view now checked?
-//  boolean checked = ((CheckBox) view).isChecked();
+//
 
 
 //        // Check which checkbox was clicked
