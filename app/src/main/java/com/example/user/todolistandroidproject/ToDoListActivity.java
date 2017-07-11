@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -50,16 +51,44 @@ public class ToDoListActivity extends AppCompatActivity {
 
         ListView listView = (ListView) findViewById(R.id.list);
         listView.setAdapter(toDoAdapter);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+//                Log.d("AHH", "IS THIS RUNNING?!");
+//                Task task = (Task) adapterView.getItemAtPosition(i);
+//                Intent intent = new Intent(ToDoListActivity.this, details_activity.class);
+//                intent.putExtra("task", task);
+//                startActivity(intent);
+//            }
+//        });
+    }
 
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Task task = (Task) adapterView.getItemAtPosition(i);
-                Intent intent = new Intent(ToDoListActivity.this, details_activity.class);
-                intent.putExtra("task", task);
-                startActivity(intent);
-            }
-        });
+    public void onItemClicked(View view) {
+        Task task = (Task) view.getTag();
+        Intent intent = new Intent(ToDoListActivity.this, details_activity.class);
+        intent.putExtra("task", task);
+        startActivity(intent);
+    }
+
+    public void onCheckboxClicked(View view) {
+        Log.d("AHH", "CLICKED");
+        //Delete from list,
+        //
+        // Is the view now checked?
+      //  boolean checked = ((CheckBox) view).isChecked();
+
+
+//        // Check which checkbox was clicked
+//        switch(view.getId()) {
+//            case R.id.checkbox_complete:
+//                if (checked);
+//
+//            else
+//
+//                break;
+//
+//
+//        }
     }
 
     public void addNewTaskButtonClicked(View view) {
