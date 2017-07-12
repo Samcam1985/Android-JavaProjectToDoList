@@ -29,22 +29,23 @@ public class CompletedListAdapter extends ArrayAdapter<Task> {
 
         TextView title = (TextView) listItemView.findViewById(R.id.title);
         title.setText(liveTask.getTitle());
-
-        CheckBox chk_isComplete = (CheckBox) listItemView.findViewById(R.id.checkbox_complete);
-        chk_isComplete.setId(position);
-
-
-        if(liveTask.getIsComplete() != null)
-        {
-            if(liveTask.getIsComplete() == true)
-            {
-                chk_isComplete.setChecked(true);
-                listItemView.setTag(liveTask);
-            }
-        }
-
+//
+//        CheckBox chk_isComplete = (CheckBox) listItemView.findViewById(R.id.checkbox_complete);
+//        chk_isComplete.setId(position);
+//
+//
+//        if(liveTask.getIsComplete() != null)
+//        {
+//            if(liveTask.getIsComplete() == true)
+//            {
+//                chk_isComplete.setChecked(true);
+//                listItemView.setTag(liveTask);
+//            }
+//        }
+//
         return listItemView;
-
+//
+//    }
     }
 }
 
