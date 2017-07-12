@@ -1,15 +1,13 @@
 package com.example.user.todolistandroidproject;
 
-import android.content.Context;
-import android.content.SharedPreferences;
+
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.ListView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
+
 
 public class details_activity extends AppCompatActivity {
 
@@ -28,10 +26,6 @@ public class details_activity extends AppCompatActivity {
         description.setText(task.getDescription());
     }
 
-//    public void markAsComplete(View view) {
-//        ToDoList.removeTask(task);
-//        finish();
-//    }
 
     public void getTask(View listItem) {
         Task task = (Task) listItem.getTag();
