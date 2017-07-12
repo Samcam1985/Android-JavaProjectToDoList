@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">ToDoListAndroidProject</string>
-    <string name="completion_prompt">Select Status</string>
     <string name="add">Create New Task</string>
     <string name="completed_tasks">View Completed Tasks</string>
     <string name="complete">Mark as Complete</string>

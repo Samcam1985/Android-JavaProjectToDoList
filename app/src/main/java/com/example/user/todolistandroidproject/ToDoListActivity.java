@@ -5,19 +5,11 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
-
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class ToDoListActivity extends AppCompatActivity {
@@ -25,7 +17,7 @@ public class ToDoListActivity extends AppCompatActivity {
     private ArrayList<Task> persistedToDolist;
     private ArrayList<Task> persistedCompletedlist;
     private ArrayList<Task> toDoList = new ArrayList<Task>();
-    private ArrayList<Task> completedList = new ArrayList<Task>();
+//    private ArrayList<Task> completedList = new ArrayList<Task>();
     private Gson gson;
     private SharedPreferences sharedPref;
     private ToDoListAdapter toDoListAdapter;
@@ -60,8 +52,6 @@ public class ToDoListActivity extends AppCompatActivity {
 
         toDoListAdapter = new ToDoListAdapter(this, toDoList);
 
-//        ToDoList toDoList = new ToDoList();
-//        ArrayList<Task> list = toDoList.getList();
 
         Task task = (Task) getIntent().getSerializableExtra("task");
         if(task != null)
@@ -77,16 +67,7 @@ public class ToDoListActivity extends AppCompatActivity {
 
         ListView listView = (ListView) findViewById(R.id.list);
         listView.setAdapter(toDoListAdapter);
-//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//                Log.d("AHH", "IS THIS RUNNING?!");
-//                Task task = (Task) adapterView.getItemAtPosition(i);
-//                Intent intent = new Intent(ToDoListActivity.this, details_activity.class);
-//                intent.putExtra("task", task);
-//                startActivity(intent);
-//            }
-//        });
+
     }
 
     public void onItemClicked(View view) {
@@ -111,8 +92,11 @@ public class ToDoListActivity extends AppCompatActivity {
         editor.putString("CompletedList", gson.toJson(persistedCompletedlist));
         editor.apply();
 
-        Intent intent = new Intent(ToDoListActivity.this, ToDoListActivity.class);
-        startActivity(intent);
+        toDoListAdapter = new ToDoListAdapter(this, toDoList);
+
+        ListView listView = (ListView) findViewById(R.id.list);
+        listView.setAdapter(toDoListAdapter);
+
     }
 
     public void addNewTaskButtonClicked(View view) {
@@ -125,50 +109,9 @@ public class ToDoListActivity extends AppCompatActivity {
         Intent intent = new Intent(this, CompletedTaskListActivity.class);
         startActivity(intent);
 
-//        ArrayList<Task> copyList = list;
-//        //toDoListAdapter.clear();
-//        for(Task task : copyList)
-//        {
-//            if(task.getIsComplete() != null)
-//            {
-//                if(task.getIsComplete() == true)
-//                {
-//                    toDoListAdapter.add(task);
-//                    toDoListAdapter.notifyDataSetChanged();
-//                }
-//            }
-//        }
 
-        //toDoListAdapter = new ToDoListAdapter(this, completedList);
-
-        //toDoListAdapter.addAll(completedList);
-        //toDoListAdapter.notifyDataSetChanged();
-
-        //CompletedListAdapter completedListAdapter = new CompletedListAdapter(this, list);
-
-        //ListView listView = (ListView) findViewById(R.id.list);
-        //listView.setAdapter(completedListAdapter);
-        //completedListAdapter.notifyDataSetChanged();
 
     }
 
 }
 
-
-//Delete from list,
-//
-// Is the view now checked?
-//
-
-
-//        // Check which checkbox was clicked
-//        switch(view.getId()) {
-//            case R.id.checkbox_complete:
-//                if (checked);
-//
-//            else
-//
-//                break;
-//
-//
-//        }
