@@ -27,24 +27,16 @@ public class ToDoListAdapter extends ArrayAdapter<Task> {
 
         Task liveTask = getItem(position);
 
-        TextView title = (TextView) listItemView.findViewById(R.id.title);
+        TextView title = listItemView.findViewById(R.id.title);
         title.setText(liveTask.getTitle());
 
-        CheckBox chk_isComplete = (CheckBox) listItemView.findViewById(R.id.checkbox_complete);
+        CheckBox chk_isComplete = listItemView.findViewById(R.id.checkbox_complete);
         chk_isComplete.setId(position);
 
         if(liveTask.getIsComplete() == null || liveTask.getIsComplete() == false)
         {
             listItemView.setTag(liveTask);
 
-//            if(liveTask.getIsComplete() == true)
-//            {
-//                chk_isComplete.setChecked(true);
-//            }
-//            else
-//            {
-//                listItemView.setTag(liveTask);
-//            }
         }
 
         return listItemView;
