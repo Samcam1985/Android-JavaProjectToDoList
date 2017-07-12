@@ -16,13 +16,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".details_activity"
-                  android:label="Task Details"/>
-
-        <activity android:name=".AddTaskActivity"
-                  android:label="Add a New Task"/>
-        <activity android:name=".CompletedTaskListActivity"
-                  android:label="Completed Tasks"></activity>
+        <activity
+            android:name=".details_activity"
+            android:label="Task Details" />
+        <activity
+            android:name=".AddTaskActivity"
+            android:label="Add a New Task" />
+        <activity
+            android:name=".CompletedTaskListActivity"
+            android:label="Completed Tasks" />
+        <activity android:name=".completed_task_item"></activity>
     </application>
 
 </manifest>

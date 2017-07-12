@@ -22,7 +22,7 @@ public class CompletedListAdapter extends ArrayAdapter<Task> {
     @Override
     public View getView(int position, View listItemView, ViewGroup parent) {
         if (listItemView == null) {
-            listItemView = LayoutInflater.from(getContext()).inflate(R.layout.task_item, parent, false);
+            listItemView = LayoutInflater.from(getContext()).inflate(R.layout.activity_completed_task_item, parent, false);
         }
 
         Task liveTask = getItem(position);
